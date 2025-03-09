@@ -23,7 +23,7 @@ function HomePage() {
         <p className="title">développeur web</p>
         <p className="description">Passionné par le développement d'applications web modernes et créatives. En tant que développeur full stack, je maîtrise à la fois les technologies front-end et back-end pour créer des expériences utilisateur complètes et performantes.</p>
       </div>
-      <div className={`code-icon ${isLoaded ? 'fade-in' : ''}`}>
+      <div className={`code-icon desktop-icon ${isLoaded ? 'fade-in' : ''}`}>
         &lt;/&gt;
       </div>
     </div>

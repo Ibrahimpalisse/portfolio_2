@@ -90,21 +90,21 @@ const Projects: React.FC = () => {
                 <div className="project-links">
                   {project.link ? (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-button primary-button">
-                      Voir le projet
+                      Voir
                     </a>
                   ) : (
                     <button className="project-button disabled-button" disabled>
-                      Projet inaccessible
+                      Inaccessible
                     </button>
                   )}
                   
                   {project.github ? (
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-button secondary-button">
-                      Code source
+                      Code
                     </a>
                   ) : (
                     <button className="project-button disabled-button" disabled>
-                      Code source
+                      Code privé
                     </button>
                   )}
                 </div>
