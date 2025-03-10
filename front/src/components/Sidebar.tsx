@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-interface SidebarProps {
-  activeSection: string;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
+const Sidebar: React.FC = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Détecte si l'écran est en mode mobile
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -21,23 +21,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
     };
   }, []);
 
-  const handleLinkClick = (sectionId: string) => {
+  // Ferme le menu mobile lorsqu'un lien est cliqué
+  const handleLinkClick = () => {
     if (isMobile) {
       setIsMobileMenuOpen(false);
     }
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
-
-  const navItems = [
-    { id: 'home', label: 'Accueil', icon: '🏠' },
-    { id: 'projects', label: 'Projets', icon: '💻' },
-    { id: 'skills', label: 'Compétences', icon: '📝' },
-    { id: 'cv', label: 'CV', icon: '📄' },
-    { id: 'contact', label: 'Contact', icon: '📧' }
-  ];
 
   return (
     <>
@@ -75,31 +64,43 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
           {/* Navigation */}
           <nav className="sidebar-nav">
             <ul>
-              {navItems.map(({ id, label, icon }) => (
-                <li 
-                  key={id}
-                  className={`nav-item ${activeSection === id ? 'active' : ''}`}
-                >
-                  <a 
-                    href={`#${id}`}
-                    className="nav-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(id);
-                    }}
-                  >
-                    <i className="nav-icon">{icon}</i>
-                    <span>{label}</span>
-                  </a>
-                </li>
-              ))}
+              <li className={`nav-item ${currentPath === '/' ? 'active' : ''}`}>
+                <Link to="/" className="nav-link" onClick={handleLinkClick}>
+                  <i className="nav-icon">&#x2302;</i>
+                  <span>Accueil</span>
+                </Link>
+              </li>
+              <li className={`nav-item ${currentPath === '/projects' ? 'active' : ''}`}>
+                <Link to="/projects" className="nav-link" onClick={handleLinkClick}>
+                  <i className="nav-icon">&#x1F4BB;</i>
+                  <span>Projets</span>
+                </Link>
+              </li>
+              <li className={`nav-item ${currentPath === '/skills' ? 'active' : ''}`}>
+                <Link to="/skills" className="nav-link" onClick={handleLinkClick}>
+                  <i className="nav-icon">&#x1F4DC;</i>
+                  <span>Compétences</span>
+                </Link>
+              </li>
+              <li className={`nav-item ${currentPath === '/cv' ? 'active' : ''}`}>
+                <Link to="/cv" className="nav-link" onClick={handleLinkClick}>
+                  <i className="nav-icon">&#x1F4C4;</i>
+                  <span>CV</span>
+                </Link>
+              </li>
+              <li className={`nav-item ${currentPath === '/contact' ? 'active' : ''}`}>
+                <Link to="/contact" className="nav-link" onClick={handleLinkClick}>
+                  <i className="nav-icon">&#x1F4AC;</i>
+                  <span>Contact</span>
+                </Link>
+              </li>
             </ul>
           </nav>
 
           {/* Bouton de téléchargement du CV */}
           <div className="cv-download">
             <a href="#" className="download-button">
-              <i className="download-icon">⬇️</i>
+              <i className="download-icon">&#x2193;</i>
               Télécharger CV
             </a>
           </div>
@@ -107,13 +108,13 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
           {/* Réseaux sociaux */}
           <div className="social-links">
             <a href="#" className="social-icon">
-              <i>🔗</i>
+              <i>&#x1F517;</i>
             </a>
             <a href="#" className="social-icon">
-              <i>📧</i>
+              <i>&#x1F4E7;</i>
             </a>
             <a href="#" className="social-icon">
-              <i>💻</i>
+              <i>&#x1F4BB;</i>
             </a>
           </div>
         </div>

@@ -91,44 +91,28 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (validateForm()) {
       setIsSubmitting(true);
       
-      try {
-        const response = await fetch('http://localhost/portfolio-react-tailwind/back/api/contact.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-        
-        if (result.success) {
-          setSubmitted(true);
-          setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: ''
-          });
-          
-          // Réinitialiser le message de succès après 5 secondes
-          setTimeout(() => {
-            setSubmitted(false);
-          }, 5000);
-        } else {
-          alert(result.message || 'Une erreur est survenue');
-        }
-      } catch (error) {
-        alert('Une erreur est survenue lors de l\'envoi du message');
-      } finally {
+      // Simulation d'un envoi de formulaire
+      setTimeout(() => {
         setIsSubmitting(false);
-      }
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        // Réinitialiser le message de succès après 5 secondes
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }, 1500);
     }
   };
 

@@ -1,0 +1,14 @@
+{
+    "name": "portfolio/backend",
+    "description": "le bavkend du portfolio",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Portfolio\\Backend\\": "src/"
+        }
+    }
+}
